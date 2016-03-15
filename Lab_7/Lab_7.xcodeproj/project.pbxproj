@@ -1,0 +1,164 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		28853A131C983743007659D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28853A0E1C983743007659D7 /* PingPong.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 288539E51C983742007659D7;
+			remoteInfo = PingPong;
+		};
+		28853A151C983743007659D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28853A0E1C983743007659D7 /* PingPong.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 288539FE1C983743007659D7;
+			remoteInfo = PingPongTests;
+		};
+		28853A4E1C983810007659D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28853A491C98380F007659D7 /* TrickySequence.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 28853A201C98380F007659D7;
+			remoteInfo = TrickySequence;
+		};
+		28853A501C983810007659D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28853A491C98380F007659D7 /* TrickySequence.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 28853A391C98380F007659D7;
+			remoteInfo = TrickySequenceTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		28853A0E1C983743007659D7 /* PingPong.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PingPong.xcodeproj; path = PingPong/PingPong.xcodeproj; sourceTree = "<group>"; };
+		28853A491C98380F007659D7 /* TrickySequence.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TrickySequence.xcodeproj; path = TrickySequence/TrickySequence.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		288539D51C983722007659D7 = {
+			isa = PBXGroup;
+			children = (
+				28853A491C98380F007659D7 /* TrickySequence.xcodeproj */,
+				28853A0E1C983743007659D7 /* PingPong.xcodeproj */,
+			);
+			sourceTree = "<group>";
+		};
+		28853A0F1C983743007659D7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				28853A141C983743007659D7 /* PingPong.app */,
+				28853A161C983743007659D7 /* PingPongTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		28853A4A1C98380F007659D7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				28853A4F1C983810007659D7 /* TrickySequence.app */,
+				28853A511C983810007659D7 /* TrickySequenceTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		288539D61C983722007659D7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+			};
+			buildConfigurationList = 288539D91C983722007659D7 /* Build configuration list for PBXProject "Lab_7" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 288539D51C983722007659D7;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 28853A0F1C983743007659D7 /* Products */;
+					ProjectRef = 28853A0E1C983743007659D7 /* PingPong.xcodeproj */;
+				},
+				{
+					ProductGroup = 28853A4A1C98380F007659D7 /* Products */;
+					ProjectRef = 28853A491C98380F007659D7 /* TrickySequence.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		28853A141C983743007659D7 /* PingPong.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = PingPong.app;
+			remoteRef = 28853A131C983743007659D7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		28853A161C983743007659D7 /* PingPongTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = PingPongTests.xctest;
+			remoteRef = 28853A151C983743007659D7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		28853A4F1C983810007659D7 /* TrickySequence.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = TrickySequence.app;
+			remoteRef = 28853A4E1C983810007659D7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		28853A511C983810007659D7 /* TrickySequenceTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = TrickySequenceTests.xctest;
+			remoteRef = 28853A501C983810007659D7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin XCBuildConfiguration section */
+		288539DA1C983722007659D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		288539DB1C983722007659D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		288539D91C983722007659D7 /* Build configuration list for PBXProject "Lab_7" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				288539DA1C983722007659D7 /* Debug */,
+				288539DB1C983722007659D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 288539D61C983722007659D7 /* Project object */;
+}
