@@ -13,6 +13,7 @@
 		28853A631C98391D007659D7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28853A5A1C98391D007659D7 /* LaunchScreen.xib */; };
 		28853A641C98391D007659D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28853A5C1C98391D007659D7 /* Main.storyboard */; };
 		28853A651C98391D007659D7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28853A5E1C98391D007659D7 /* Images.xcassets */; };
+		28B9E1081C987C8B000396FF /* PadovanNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 28B9E1071C987C8B000396FF /* PadovanNumber.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		28853A5D1C98391D007659D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		28853A5E1C98391D007659D7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		28853A5F1C98391D007659D7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		28B9E1061C987C8B000396FF /* PadovanNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PadovanNumber.h; sourceTree = "<group>"; };
+		28B9E1071C987C8B000396FF /* PadovanNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PadovanNumber.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +75,8 @@
 		28853A561C98391D007659D7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				28B9E1061C987C8B000396FF /* PadovanNumber.h */,
+				28B9E1071C987C8B000396FF /* PadovanNumber.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -157,6 +162,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28B9E1081C987C8B000396FF /* PadovanNumber.m in Sources */,
 				28853A621C98391D007659D7 /* ViewController.m in Sources */,
 				28853A611C98391D007659D7 /* main.m in Sources */,
 				28853A601C98391D007659D7 /* AppDelegate.m in Sources */,
@@ -308,6 +314,7 @@
 				28853A451C98380F007659D7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

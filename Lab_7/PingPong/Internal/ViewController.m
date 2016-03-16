@@ -10,4 +10,9 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+- (IBAction)buttonTaped:(id)sender
+{
+    
+}
+
 @end
