@@ -6,7 +6,15 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    CGRect mainFrame = [[UIScreen mainScreen] bounds];
+    self.window = [[UIWindow alloc] initWithFrame:mainFrame];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *tab = [storyboard instantiateInitialViewController];
+    
+    self.window.rootViewController = tab;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
