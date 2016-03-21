@@ -6,6 +6,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *numberLabel;
 @property (nonatomic, weak) IBOutlet UIButton *button;
 @property (nonatomic) CADisplayLink *displayLink;
+@property (nonatomic) NSLock *lock;
 @property (nonatomic) PadovanNumber *number;
 @property (nonatomic) BOOL pause;
 
@@ -18,7 +19,8 @@
     [super viewDidLoad];
     self.pause = YES;
     self.number = [[PadovanNumber alloc] init];
-
+    self.lock = [[NSLock alloc] init];
+    
     self.displayLink = [CADisplayLink displayLinkWithTarget:self
                                                 selector:@selector(updateNumberLabel)];
     
@@ -27,9 +29,14 @@
 
 - (IBAction)buttonTaped
 {
+
     self.pause = !self.pause;
-    self.displayLink.paused = self.pause;
     [self.button setTitle:@"Stop" forState:UIControlStateNormal];
+    self.displayLink.paused = self.pause;
+    
+    if (self.pause) {
+        self.button.enabled = NO;
+    }
     
     if (!self.pause) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -41,26 +48,29 @@
 - (void)runCalculating
 {
     while (YES && !self.pause) {
+        [self.lock lock];
         [self.number nextValue];
+        [self.lock unlock];
     }
     [self didFinishCalculation];
 }
 
 - (void)didFinishCalculation
 {
-    [self.button setEnabled:NO];
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.button setTitle:@"Start" forState:UIControlStateNormal];
+        self.displayLink.paused = self.pause;
+        [self updateNumberLabel];
         [self.button setEnabled:YES];
     });
 }
 
 - (void)updateNumberLabel
 {
-    @synchronized (self ) {
+    [self.lock lock];
         self.numberLabel.text = [NSString stringWithFormat:@"Step:%d number is %d",
                              self.number.step, (int)self.number.value];
-    }
+    [self.lock unlock];
 }
 
 @end
