@@ -3,10 +3,11 @@
 
 @interface ViewController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *numberLabel;
-@property (weak, nonatomic) IBOutlet UIButton *button;
-@property (nonatomic, strong) PadovanNumber *number;
-@property (nonatomic, readwrite) BOOL pause;
+@property (nonatomic, weak) IBOutlet UILabel *numberLabel;
+@property (nonatomic, weak) IBOutlet UIButton *button;
+@property (nonatomic) CADisplayLink *displayLink;
+@property (nonatomic) PadovanNumber *number;
+@property (nonatomic) BOOL pause;
 
 @end
 
@@ -15,52 +16,51 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.pause = NO;
+    self.pause = YES;
     self.number = [[PadovanNumber alloc] init];
 
-    CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self
+    self.displayLink = [CADisplayLink displayLinkWithTarget:self
                                                 selector:@selector(updateNumberLabel)];
     
-    [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+    [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
 }
 
-
-- (IBAction)buttonTaped:(id)sender
+- (IBAction)buttonTaped
 {
     self.pause = !self.pause;
-    [self chageButtonText];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self runCalculating];
-    });
-}
-
-- (void)chageButtonText
-{
-    if (self.pause) {
-        [self.button setTitle:@"Stop" forState:UIControlStateNormal];
-    }
-    else {
-        [self.button setTitle:@"Start" forState:UIControlStateNormal];
+    self.displayLink.paused = self.pause;
+    [self.button setTitle:@"Stop" forState:UIControlStateNormal];
+    
+    if (!self.pause) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self runCalculating];
+        });
     }
 }
 
 - (void)runCalculating
 {
-    while (YES && self.pause) {
+    while (YES && !self.pause) {
         [self.number nextValue];
     }
+    [self didFinishCalculation];
+}
+
+- (void)didFinishCalculation
+{
+    [self.button setEnabled:NO];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.button setTitle:@"Start" forState:UIControlStateNormal];
+        [self.button setEnabled:YES];
+    });
 }
 
 - (void)updateNumberLabel
 {
-    self.numberLabel.text = [NSString stringWithFormat:@"Step:%d number is %llu",
-                             self.number.step, self.number.value];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    @synchronized (self ) {
+        self.numberLabel.text = [NSString stringWithFormat:@"Step:%d number is %d",
+                             self.number.step, (int)self.number.value];
+    }
 }
 
 @end

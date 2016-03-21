@@ -2,14 +2,14 @@
 
 @interface PadovanNumber ()
 
-@property (atomic, readwrite) unsigned long long value;
+@property (atomic, readwrite) SInt32 value;
 @property (atomic, readwrite) int step;
 
 @end
 
 @implementation PadovanNumber
 
-- (unsigned long long)performStep:(int)step
+- (SInt32)performStep:(int)step
 {
     if (step == 0) {
         return 1;
@@ -18,8 +18,8 @@
         return 0;
     }
     else {
-        unsigned long long number1 = [self performStep:(step - 2)];
-        unsigned long long number2 = [self performStep:(step - 3)];
+        SInt32 number1 = [self performStep:(step - 2)];
+        SInt32 number2 = [self performStep:(step - 3)];
         
         return number1 + number2;
     }

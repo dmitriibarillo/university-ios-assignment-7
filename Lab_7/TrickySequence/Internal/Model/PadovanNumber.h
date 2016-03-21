@@ -2,7 +2,7 @@
 
 @interface PadovanNumber : NSObject
 
-@property (atomic, readonly) unsigned long long value;
+@property (atomic, readonly) SInt32 value;
 @property (atomic, readonly) int step;
 
 /**
