@@ -8,8 +8,9 @@
     self = [super init];
     if (self) {
         _speed = kPaddleSpeed;
-        self.position = position;
         self.backgroundColor = [UIColor redColor];
+        self.frame = CGRectMake(position.x, position.y, kPaddleWidth, kPaddleHeight);
+        [self setPosition:position];
     }
     return self;
 }
@@ -26,8 +27,7 @@
 - (void)setPosition:(CGPoint)position
 {
     _position = position;
-    CGRect pos = CGRectMake(position.x, position.y, kPaddleWidth, kPaddleHeight);
-    self.frame = pos;
+    self.center = position;
 }
 
 

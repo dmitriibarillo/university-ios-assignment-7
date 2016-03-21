@@ -22,20 +22,20 @@
     self.mainFrame = [[UIScreen mainScreen] applicationFrame];
     
     self.topPaddle = [[Paddle alloc]
-                      initWithPosition:(CGPoint){self.mainFrame.size.width / 2 - kPaddleWidth / 2,
-                      self.mainFrame.origin.y}
+                      initWithPosition:(CGPoint){self.mainFrame.size.width / 2,
+                      self.mainFrame.origin.y + kPaddleHeight}
                       andColor:[UIColor blueColor]];
     [self.view addSubview:self.topPaddle];
     
     self.bottomPaddle = [[Paddle alloc]
-                      initWithPosition:(CGPoint){self.mainFrame.size.width / 2 - kPaddleWidth / 2,
+                      initWithPosition:(CGPoint){self.mainFrame.size.width / 2,
                           self.mainFrame.size.height - kPaddleHeight}
                       andColor:[UIColor greenColor]];
     [self.view addSubview:self.bottomPaddle];
     
     self.ball = [[Ball alloc]
-                      initWithPosition:(CGPoint){self.mainFrame.size.width / 2 - kBallSize / 2,
-                                                 self.mainFrame.size.height / 2 - kBallSize / 2}
+                      initWithPosition:(CGPoint){self.mainFrame.size.width / 2,
+                                                 self.mainFrame.size.height / 2 }
                       andColor:[UIColor redColor]];
     [self.view addSubview:self.ball];
     
@@ -48,11 +48,11 @@
 - (void)mainViewTapped:(UITapGestureRecognizer *)sender
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self startGame];
+        [self startGameProcess];
     });
 }
 
-- (void)startGame
+- (void)startGameProcess
 {
     self.pause = !self.pause;
     while (YES && !self.pause) {
@@ -149,13 +149,13 @@
     int xPaddlePosition = self.topPaddle.position.x;
     CGPoint paddlePosition = self.topPaddle.position;
     
-    if (xPaddlePosition + self.topPaddle.frame.size.width < xBallPosition &&
-        xPaddlePosition + self.topPaddle.frame.size.width < self.mainFrame.size.width) {
-        paddlePosition.x = self.topPaddle.frame.origin.x + self.topPaddle.speed;
+    if (xPaddlePosition < xBallPosition &&
+        xPaddlePosition + self.topPaddle.frame.size.width / 2 < self.mainFrame.size.width) {
+        paddlePosition.x = self.topPaddle.position.x + self.topPaddle.speed;
     }
     else if (xPaddlePosition + self.topPaddle.frame.size.width / 2 > xBallPosition &&
-             xPaddlePosition > 0) {
-        paddlePosition.x = self.topPaddle.frame.origin.x - self.topPaddle.speed;
+             xPaddlePosition - self.topPaddle.frame.size.width / 2  > 0) {
+        paddlePosition.x = self.topPaddle.position.x - self.topPaddle.speed;
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -169,13 +169,13 @@
     int xPaddlePosition = self.bottomPaddle.position.x;
     CGPoint paddlePosition = self.bottomPaddle.position;
     
-    if (xPaddlePosition + self.bottomPaddle.frame.size.width < xBallPosition &&
-        xPaddlePosition + self.bottomPaddle.frame.size.width < self.mainFrame.size.width) {
-        paddlePosition.x = self.bottomPaddle.frame.origin.x + self.bottomPaddle.speed;
+    if (xPaddlePosition < xBallPosition &&
+        xPaddlePosition + self.bottomPaddle.frame.size.width / 2  < self.mainFrame.size.width) {
+        paddlePosition.x = self.bottomPaddle.position.x + self.bottomPaddle.speed;
     }
-    else if (xPaddlePosition + self.bottomPaddle.frame.size.width/2 > xBallPosition &&
-             xPaddlePosition > 0) {
-        paddlePosition.x = self.bottomPaddle.frame.origin.x - self.bottomPaddle.speed;
+    else if (xPaddlePosition + self.bottomPaddle.frame.size.width / 2 > xBallPosition &&
+             xPaddlePosition - self.bottomPaddle.frame.size.width / 2 > 0) {
+        paddlePosition.x = self.bottomPaddle.position.x - self.bottomPaddle.speed;
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{

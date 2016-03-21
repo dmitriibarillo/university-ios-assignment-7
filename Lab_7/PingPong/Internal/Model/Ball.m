@@ -9,8 +9,11 @@
     if (self) {
         _speed = kBallSpeed;
         _direction = directionDefault;
-        self.position = position;
+        self.frame = CGRectMake(position.x, position.y, kBallSize, kBallSize);
+        [self setPosition:position];
         self.backgroundColor = [UIColor redColor];
+        self.layer.cornerRadius = self.frame.size.width/2;
+        self.clipsToBounds = YES;
     }
     return self;
 }
@@ -27,15 +30,7 @@
 - (void)setPosition:(CGPoint)position
 {
     _position = position;
-    CGRect pos = CGRectMake(position.x, position.y, kBallSize, kBallSize);
-    self.frame = pos;
-}
-
--(void)drawRect:(CGRect)rect
-{
-    [super drawRect:rect];
-    self.layer.cornerRadius = self.frame.size.width/2;
-    self.clipsToBounds = YES;
+    self.center = position;
 }
 
 @end
