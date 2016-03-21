@@ -9,6 +9,16 @@
 
 @implementation PadovanNumber
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _lock = [[NSLock alloc] init];
+    }
+    return self;
+}
+
+
 - (SInt32)performStep:(int)step
 {
     if (step == 0) {
@@ -27,7 +37,12 @@
 
 - (void)nextValue
 {
-    self.value = [self performStep:self.step++];
+    
+    SInt32 value = [self performStep:(self.step + 1)];
+    [self.lock lock];
+    self.value = value;
+    self.step = self.step + 1;
+    [self.lock unlock];
 }
 
 @end

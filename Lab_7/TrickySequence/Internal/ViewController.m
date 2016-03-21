@@ -6,7 +6,6 @@
 @property (nonatomic, weak) IBOutlet UILabel *numberLabel;
 @property (nonatomic, weak) IBOutlet UIButton *button;
 @property (nonatomic) CADisplayLink *displayLink;
-@property (nonatomic) NSLock *lock;
 @property (nonatomic) PadovanNumber *number;
 @property (nonatomic) BOOL pause;
 
@@ -19,7 +18,6 @@
     [super viewDidLoad];
     self.pause = YES;
     self.number = [[PadovanNumber alloc] init];
-    self.lock = [[NSLock alloc] init];
     
     self.displayLink = [CADisplayLink displayLinkWithTarget:self
                                                 selector:@selector(updateNumberLabel)];
@@ -48,9 +46,7 @@
 - (void)runCalculating
 {
     while (YES && !self.pause) {
-        [self.lock lock];
         [self.number nextValue];
-        [self.lock unlock];
     }
     [self didFinishCalculation];
 }
@@ -67,10 +63,10 @@
 
 - (void)updateNumberLabel
 {
-    [self.lock lock];
+    [self.number.lock lock];
         self.numberLabel.text = [NSString stringWithFormat:@"Step:%d number is %d",
                              self.number.step, (int)self.number.value];
-    [self.lock unlock];
+    [self.number.lock unlock];
 }
 
 @end

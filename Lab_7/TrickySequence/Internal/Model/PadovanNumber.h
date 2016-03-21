@@ -4,6 +4,7 @@
 
 @property (atomic, readonly) SInt32 value;
 @property (atomic, readonly) int step;
+@property (nonatomic, readonly) NSLock *lock;
 
 /**
  * Generates the next element of sequence of padovan numbers.
